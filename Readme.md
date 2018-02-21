@@ -2,7 +2,7 @@ Testing echo:
 
     Method: Post 
     
-    URL   : http://localhost:8000/echo
+    URL   : https://basic-authentication-ws.herokuapp.com/echo
     
     Payload:
      
@@ -15,7 +15,7 @@ Testing echoSecure:
 
     Method: Post 
     
-    URL   : http://localhost:8000/echoSecure
+    URL   : https://basic-authentication-ws.herokuapp.com/echoSecure
     
     Authentication : Basic Auth, username : testU, password: testP
     
