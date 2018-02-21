@@ -17,13 +17,21 @@ public class SparkMain {
         port(Integer.parseInt(port));
         get("/", (request, response) -> {
             response.type("text/html");
-            return "user /echo or /echoSecure";
+            return "user /echo or /echoSecure and POSt";
         });
         get("/echo", (request, response) -> {
             response.type("application/json");
             return EchoService.processEcho(request, response);
         }, new JsonTransformer());
         get("/echoSecure", (request, response) -> {
+            response.type("application/json");
+            return EchoService.processEchoSecure(request, response);
+        }, new JsonTransformer());
+        post("/echo", (request, response) -> {
+            response.type("application/json");
+            return EchoService.processEcho(request, response);
+        }, new JsonTransformer());
+        post("/echoSecure", (request, response) -> {
             response.type("application/json");
             return EchoService.processEchoSecure(request, response);
         }, new JsonTransformer());
