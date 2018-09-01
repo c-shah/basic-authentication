@@ -24,6 +24,18 @@ public class EchoService {
         return echoResponse;
     }
 
+    public static EchoResponse processEchoDelay(Request request, Response response) throws Exception {
+        EchoRequest echoRequest = new Gson().fromJson(request.body(), EchoRequest.class);
+        Thread.sleep(10000);
+        EchoResponse echoResponse = new EchoResponse();
+        if( echoRequest == null ) {
+            echoResponse.message = "Response : please use post method. ";
+        } else {
+            echoResponse.message = "Response : " + echoRequest.message;
+        }
+        return echoResponse;
+    }
+
     private static Boolean isAuthenticated(Request request, Response response) {
         try {
             String header = request.headers("Authorization");

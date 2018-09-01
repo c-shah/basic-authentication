@@ -24,6 +24,10 @@ public class SparkMain {
             response.type("application/json");
             return EchoService.processEcho(request, response);
         }, new JsonTransformer());
+        get("/echodelay", (request, response) -> {
+            response.type("application/json");
+            return EchoService.processEchoDelay(request, response);
+        }, new JsonTransformer());
         get("/echoSecure", (request, response) -> {
             response.type("application/json");
             return EchoService.processEchoSecure(request, response);
