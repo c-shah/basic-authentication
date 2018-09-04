@@ -26,7 +26,7 @@ public class EchoService {
 
     public static EchoResponse processEchoDelay(Request request, Response response) throws Exception {
         EchoRequest echoRequest = new Gson().fromJson(request.body(), EchoRequest.class);
-        Thread.sleep(70000);
+        Thread.sleep(55000);
         EchoResponse echoResponse = new EchoResponse();
         if( echoRequest == null ) {
             echoResponse.message = "Response : please use post method. ";
