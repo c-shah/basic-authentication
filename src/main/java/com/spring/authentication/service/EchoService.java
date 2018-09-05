@@ -29,7 +29,7 @@ public class EchoService {
         Thread.sleep(55000);
         EchoResponse echoResponse = new EchoResponse();
         if( echoRequest == null ) {
-            echoResponse.message = "Response : please use post method. ";
+            echoResponse.message = "Response : please use post method . ";
         } else {
             echoResponse.message = "Response : " + echoRequest.message;
         }
