@@ -18,10 +18,12 @@ public class SparkMain {
         port(Integer.parseInt(port));
         get("/", (request, response) -> {
             response.type("text/html");
+            response.header("Access-Control-Allow-Origin", "*");
             return "user /echo or /echoSecure and POSt";
         });
         get("/echo", (request, response) -> {
             response.type("application/json");
+            response.header("Access-Control-Allow-Origin", "*");
             return EchoService.processEcho(request, response);
         }, new JsonTransformer());
         get("/echodelay", (request, response) -> {
@@ -30,6 +32,7 @@ public class SparkMain {
         }, new JsonTransformer());
         get("/echoSecure", (request, response) -> {
             response.type("application/json");
+            response.header("Access-Control-Allow-Origin", "*");
             return EchoService.processEchoSecure(request, response);
         }, new JsonTransformer());
         post("/echo", (request, response) -> {
