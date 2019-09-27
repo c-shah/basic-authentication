@@ -16,14 +16,29 @@ public class SparkMain {
         Map<String, String> environment = EnvironmentService.getEnvironmentMap();
         String port = environment.get("PORT") != null ? environment.get("PORT") : "8000";
         port(Integer.parseInt(port));
+        
+        options("/*", (request, response) -> {
+            String accessControlRequestHeaders = request.headers("Access-Control-Request-Headers");
+            if (accessControlRequestHeaders != null) {
+                response.header("Access-Control-Allow-Headers", accessControlRequestHeaders);
+            }
+
+            String accessControlRequestMethod = request.headers("Access-Control-Request-Method");
+            if (accessControlRequestMethod != null) {
+                response.header("Access-Control-Allow-Methods", accessControlRequestMethod);
+            }
+
+            return "OK";
+        });
+
+        before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
+        
         get("/", (request, response) -> {
             response.type("text/html");
-            response.header("Access-Control-Allow-Origin", "*");
             return "user /echo or /echoSecure and POSt";
         });
         get("/echo", (request, response) -> {
             response.type("application/json");
-            response.header("Access-Control-Allow-Origin", "*");
             return EchoService.processEcho(request, response);
         }, new JsonTransformer());
         get("/echodelay", (request, response) -> {
@@ -32,7 +47,6 @@ public class SparkMain {
         }, new JsonTransformer());
         get("/echoSecure", (request, response) -> {
             response.type("application/json");
-            response.header("Access-Control-Allow-Origin", "*");
             return EchoService.processEchoSecure(request, response);
         }, new JsonTransformer());
         post("/echo", (request, response) -> {
