@@ -2,6 +2,7 @@ package com.spring.authentication.spark;
 
 import com.spring.authentication.service.EchoService;
 import com.spring.authentication.service.EnvironmentService;
+import com.spring.authentication.service.HRService;
 import com.spring.authentication.service.JsonTransformer;
 
 import java.util.Map;
@@ -32,7 +33,17 @@ public class SparkMain {
         });
 
         before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
-        
+
+        get("/hr/employees", (request, response) -> {
+            response.type("application/json");
+            return HRService.getAllEmployees(request, response);
+        });
+
+        get("/hr/employee/:columnName/:columnValue", (request, response) -> {
+            response.type("application/json");
+            return HRService.getEmployeesByColumn(request, response);
+        });
+
         get("/", (request, response) -> {
             response.type("text/html");
             return "user /echo or /echoSecure and POSt";
