@@ -37,13 +37,11 @@ public class SparkMain {
         get("/hr/employees", (request, response) -> {
             response.type("application/json");
             return HRService.getAllEmployees(request, response);
-        });
-
+        }, new JsonTransformer());
         get("/hr/employee/:columnName/:columnValue", (request, response) -> {
             response.type("application/json");
             return HRService.getEmployeesByColumn(request, response);
-        });
-
+        }, new JsonTransformer());
         get("/", (request, response) -> {
             response.type("text/html");
             return "user /echo or /echoSecure and POSt";

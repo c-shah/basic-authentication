@@ -24,3 +24,14 @@ Testing echoSecure:
     {
         "message": "Test Message"
     }
+
+
+HR Service : employees
+    
+    Method: Get
+    
+    URL : https://basic-authentication-ws.herokuapp.com/hr/employees
+    
+    Response : 
+    
+    
